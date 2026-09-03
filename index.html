@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>周畅 · 作品集</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F0F7FF;
+  --bg-white: #FFFFFF;
+  --primary: #2563EB;
+  --primary-dark: #1E40AF;
+  --primary-light: #3B82F6;
+  --accent: #60A5FA;
+  --accent-light: #DBEAFE;
+  --accent-lighter: #EFF6FF;
+  --fg: #1E293B;
+  --muted: #64748B;
+  --border: #BFDBFE;
+  --shadow-color: #1E40AF;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: "Plus Jakarta Sans", "Noto Sans SC", system-ui, sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: "Outfit", "Noto Sans SC", system-ui, sans-serif;
+}
+
+/* === Geometric Decorations === */
+.geo-circle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.geo-blob {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dot-pattern {
+  background-image: radial-gradient(circle, var(--accent) 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
+}
+
+.grid-pattern {
+  background-image: linear-gradient(var(--accent-light) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--accent-light) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* === Hard Shadow System === */
+.shadow-pop {
+  box-shadow: 4px 4px 0px 0px var(--shadow-color);
+}
+
+.shadow-pop-lg {
+  box-shadow: 8px 8px 0px 0px var(--shadow-color);
+}
+
+.shadow-pop-soft {
+  box-shadow: 6px 6px 0px 0px var(--accent-light);
+}
+
+.shadow-pop-hover {
+  box-shadow: 6px 6px 0px 0px var(--shadow-color);
+}
+
+.shadow-pop-active {
+  box-shadow: 2px 2px 0px 0px var(--shadow-color);
+}
+
+/* === Sticker Card === */
+.sticker-card {
+  background: var(--bg-white);
+  border: 2px solid var(--fg);
+  border-radius: var(--radius-lg);
+  box-shadow: 6px 6px 0px 0px var(--accent-light);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+.sticker-card:hover {
+  transform: translate(-3px, -3px) rotate(-0.5deg);
+  box-shadow: 10px 10px 0px 0px var(--primary);
+}
+
+.sticker-card-pop {
+  background: var(--bg-white);
+  border: 2px solid var(--fg);
+  border-radius: var(--radius-md);
+  box-shadow: 4px 4px 0px 0px var(--shadow-color);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sticker-card-pop:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px 0px var(--primary);
+}
+
+/* === Tags === */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 500;
+  background: var(--accent-lighter);
+  color: var(--primary-dark);
+  border: 1.5px solid var(--border);
+  transition: all 0.2s ease;
+}
+
+.tag:hover {
+  background: var(--accent-light);
+  transform: translateY(-1px);
+}
+
+.tag-solid {
+  background: var(--primary);
+  color: #fff;
+  border: 1.5px solid var(--primary-dark);
+}
+
+/* === Buttons === */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  font-family: "Outfit", "Noto Sans SC", sans-serif;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--fg);
+  box-shadow: 4px 4px 0px 0px var(--fg);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px var(--fg);
+}
+
+.btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px var(--fg);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: transparent;
+  color: var(--fg);
+  font-weight: 700;
+  font-family: "Outfit", "Noto Sans SC", sans-serif;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--fg);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background: var(--accent-light);
+}
+
+/* === Section Styling === */
+.section-padding {
+  padding: 80px 0;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  background: var(--accent-lighter);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--fg);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.section-subtitle {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+/* === Metric Cards === */
+.metric-card {
+  background: var(--bg-white);
+  border: 2px solid var(--fg);
+  border-radius: var(--radius-md);
+  padding: 24px 20px;
+  text-align: center;
+  box-shadow: 4px 4px 0px 0px var(--accent);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.metric-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px var(--primary);
+}
+
+.metric-num {
+  font-family: "Outfit", sans-serif;
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.metric-label {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+/* === Timeline === */
+.timeline-item {
+  position: relative;
+  padding-left: 28px;
+  padding-bottom: 24px;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 2px solid var(--fg);
+  z-index: 1;
+}
+
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 20px;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline-item:last-child::after {
+  display: none;
+}
+
+/* === Nav === */
+.nav-bar {
+  background: rgba(240, 247, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1.5px solid var(--border);
+}
+
+.nav-link {
+  font-weight: 500;
+  color: var(--muted);
+  transition: color 0.2s;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.nav-link:hover {
+  color: var(--primary);
+}
+
+/* === Animations === */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(3deg); }
+  75% { transform: rotate(-3deg); }
+}
+
+.float-anim { animation: float 6s ease-in-out infinite; }
+.float-anim-delayed { animation: float-delayed 8s ease-in-out infinite; }
+.spin-slow { animation: spin-slow 20s linear infinite; }
+
+/* Scroll reveal */
+.reveal {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* === Project Card === */
+.project-card {
+  background: var(--bg-white);
+  border: 2px solid var(--fg);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 8px 8px 0px 0px var(--accent-light);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+.project-card:hover {
+  transform: translate(-4px, -4px) rotate(-0.3deg);
+  box-shadow: 12px 12px 0px 0px var(--primary);
+}
+
+.project-card .card-badge {
+  position: absolute;
+  top: -14px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 2px solid var(--fg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Outfit", sans-serif;
+  font-weight: 800;
+  color: #fff;
+  font-size: 18px;
+  box-shadow: 3px 3px 0px 0px var(--fg);
+  z-index: 10;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.project-card:hover .card-badge {
+  transform: rotate(360deg) scale(1.1);
+}
+
+/* === Image containers === */
+.img-frame {
+  border: 2px solid var(--fg);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.img-frame:hover {
+  transform: scale(1.02);
+}
+
+/* === Squiggle Divider === */
+.squiggle-divider {
+  width: 100%;
+  height: 40px;
+  overflow: hidden;
+}
+
+/* === Mobile Menu === */
+.mobile-menu {
+  display: none;
+}
+
+.mobile-menu.active {
+  display: flex;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .section-title { font-size: 26px; }
+  .section-padding { padding: 48px 0; }
+  .metric-num { font-size: 32px; }
+  .shadow-pop { box-shadow: 3px 3px 0px 0px var(--shadow-color); }
+  .shadow-pop-lg { box-shadow: 5px 5px 0px 0px var(--shadow-color); }
+  .sticker-card:hover { transform: translate(-2px, -2px); }
+  .project-card:hover { transform: translate(-2px, -2px); }
+  .hide-mobile { display: none !important; }
+  .geo-circle { opacity: 0.5; }
+  .float-anim, .float-anim-delayed { animation: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav class="nav-bar fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+    <a href="#hero" class="flex items-center gap-2 text-decoration-none">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--primary);border:2px solid var(--fg);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Outfit',sans-serif;font-weight:800;font-size:16px;box-shadow:2px 2px 0 0 var(--fg);">周</div>
+      <span class="font-heading font-bold text-lg" style="color:var(--fg);">周畅</span>
+    </a>
+    <div class="hidden md:flex items-center gap-7">
+      <a href="#about" class="nav-link">关于</a>
+      <a href="#competency" class="nav-link">核心能力</a>
+      <a href="#projects" class="nav-link">项目实战</a>
+      <a href="#self-media" class="nav-link">自媒体</a>
+      <a href="#education" class="nav-link">教育背景</a>
+    </div>
+    <a href="#contact" class="hidden md:inline-flex btn-primary" style="padding:8px 20px;font-size:14px;">联系我</a>
+    <button id="menuToggle" class="md:hidden" style="width:40px;height:40px;border:2px solid var(--fg);border-radius:var(--radius-sm);background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+      <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
+  </div>
+  <div id="mobileMenu" class="mobile-menu md:hidden flex-col gap-3 px-5 py-4 border-t" style="border-color:var(--border);background:var(--bg-white);">
+    <a href="#about" class="nav-link mobile-menu-link">关于</a>
+    <a href="#competency" class="nav-link mobile-menu-link">核心能力</a>
+    <a href="#projects" class="nav-link mobile-menu-link">项目实战</a>
+    <a href="#self-media" class="nav-link mobile-menu-link">自媒体</a>
+    <a href="#education" class="nav-link mobile-menu-link">教育背景</a>
+    <a href="#contact" class="btn-primary mobile-menu-link" style="justify-content:center;">联系我</a>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section id="hero" class="relative min-h-screen flex items-center pt-16 overflow-hidden">
+  <!-- Geometric Decorations -->
+  <div class="geo-circle" style="width:400px;height:400px;background:var(--accent-light);top:-80px;right:-80px;opacity:0.6;"></div>
+  <div class="geo-circle float-anim" style="width:80px;height:80px;background:var(--primary-light);top:20%;right:12%;opacity:0.3;"></div>
+  <div class="geo-circle float-anim-delayed" style="width:50px;height:50px;background:var(--accent);bottom:25%;left:8%;opacity:0.4;"></div>
+  <div class="geo-circle hide-mobile" style="width:24px;height:24px;background:var(--primary);top:30%;left:15%;"></div>
+  <div class="geo-circle hide-mobile" style="width:16px;height:16px;background:var(--primary-light);bottom:30%;right:20%;"></div>
+  <div class="absolute inset-0 dot-pattern opacity-30 hide-mobile" style="z-index:0;"></div>
+
+  <div class="max-w-6xl mx-auto px-5 relative z-10 grid md:grid-cols-2 gap-8 items-center w-full">
+    <!-- Left: Text -->
+    <div class="reveal">
+      <div class="section-label" style="margin-bottom:20px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--primary);display:inline-block;"></span>
+        PORTFOLIO · 2026
+      </div>
+      <h1 class="font-heading font-extrabold leading-tight mb-4" style="font-size:clamp(36px, 6vw, 56px);color:var(--fg);">
+        周畅的<br>
+        <span style="color:var(--primary);">作品集</span>
+      </h1>
+      <p class="text-lg mb-6" style="color:var(--muted);font-weight:500;">
+        周畅 · 德国国家旅游局实战运营 · 多平台内容与活动运营
+      </p>
+      <div class="flex flex-wrap gap-2 mb-8">
+        <span class="tag tag-solid">德语专八</span>
+        <span class="tag tag-solid">英语CET-6</span>
+        <span class="tag">用户体验</span>
+        <span class="tag">活动策划</span>
+        <span class="tag">数据复盘</span>
+        <span class="tag">跨文化传播</span>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a href="#projects" class="btn-primary">
+          查看项目
+          <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+        <a href="#contact" class="btn-secondary">联系我</a>
+      </div>
+    </div>
+
+    <!-- Right: Image card -->
+    <div class="reveal reveal-delay-2 relative">
+      <div class="geo-circle" style="width:100%;height:100%;background:var(--accent-light);top:16px;left:16px;border-radius:var(--radius-lg);"></div>
+      <div class="relative img-frame" style="border-radius:var(--radius-lg);box-shadow:8px 8px 0px 0px var(--primary);">
+        <img src="public/images/work-01.webp" alt="活动现场合照" style="width:100%;height:420px;object-fit:cover;display:block;">
+      </div>
+      <!-- Floating badge -->
+      <div class="absolute float-anim" style="top:-20px;left:-20px;background:#fff;border:2px solid var(--fg);border-radius:var(--radius-md);padding:10px 16px;box-shadow:4px 4px 0px 0px var(--fg);z-index:5;">
+        <div style="font-family:'Outfit',sans-serif;font-weight:800;font-size:20px;color:var(--primary);line-height:1;">3场</div>
+        <div style="font-size:11px;color:var(--muted);">线下活动执行</div>
+      </div>
+      <div class="absolute float-anim-delayed" style="bottom:-16px;right:-16px;background:#fff;border:2px solid var(--fg);border-radius:var(--radius-md);padding:10px 16px;box-shadow:4px 4px 0px 0px var(--fg);z-index:5;">
+        <div style="font-family:'Outfit',sans-serif;font-weight:800;font-size:20px;color:var(--primary);line-height:1;">24+</div>
+        <div style="font-size:11px;color:var(--muted);">内容跟进产出</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 hide-mobile">
+    <div style="width:28px;height:44px;border:2px solid var(--muted);border-radius:14px;display:flex;justify-content:center;padding-top:6px;">
+      <div style="width:4px;height:8px;background:var(--muted);border-radius:2px;animation:float 2s ease-in-out infinite;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Squiggle Divider -->
+<div class="squiggle-divider">
+  <svg viewbox="0 0 1440 40" preserveaspectratio="none" style="width:100%;height:100%;">
+    <path d="M0,20 Q120,0 240,20 T480,20 T720,20 T960,20 T1200,20 T1440,20" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"></path>
+  </svg>
+</div>
+
+<!-- ========== ABOUT ========== -->
+<section id="about" class="section-padding relative">
+  <div class="geo-circle hide-mobile" style="width:200px;height:200px;background:var(--accent-lighter);top:10%;left:-60px;opacity:0.5;border-radius:50%;"></div>
+
+  <div class="max-w-6xl mx-auto px-5 relative z-10">
+    <div class="reveal">
+      <div class="section-label">关于我</div>
+      <h2 class="section-title">多语种运营，数据驱动增长</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 mt-8">
+      <div class="md:col-span-2 reveal reveal-delay-1">
+        <div class="sticker-card p-7">
+          <p class="text-base leading-relaxed" style="color:var(--fg);">
+            <span style="font-weight:700;color:var(--primary-dark);">德语专八、英语CET-6（500+）多语种运营能力</span>，具备德国国家旅游局北京办事处实战运营经验。连续3个月独立执行微信、小红书等多平台内容发布，累计跟进产出24+篇；参与3场媒体分享会/旅游推介活动（北京2场、广州1场）的全链路执行，覆盖90+媒体代表与KOL；日常维护500人官方粉丝群，熟悉用户触达与互动运营。
+          </p>
+          <p class="text-base leading-relaxed mt-4" style="color:var(--muted);">
+            擅长以数据驱动决策，能用KAWO、Excel追踪多维度数据并输出结案报告，支撑团队策略调整。正在独立运营抖音口播自媒体，对短视频增长逻辑有一手体感。从经理的批评指正中持续迭代——更细心、更主动沟通、更善于数据可视化。
+          </p>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2 space-y-4">
+        <div class="sticker-card-pop p-5 flex items-center gap-3">
+          <div style="width:44px;height:44px;border-radius:50%;background:var(--accent-lighter);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          </div>
+          <div>
+            <div style="font-size:12px;color:var(--muted);font-weight:500;">求职方向</div>
+            <div style="font-weight:700;color:var(--fg);">运营 / 海外业务</div>
+          </div>
+        </div>
+        <div class="sticker-card-pop p-5 flex items-center gap-3">
+          <div style="width:44px;height:44px;border-radius:50%;background:var(--accent-lighter);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </div>
+          <div>
+            <div style="font-size:12px;color:var(--muted);font-weight:500;">邮箱</div>
+            <div style="font-weight:700;color:var(--fg);font-size:14px;">13153132292@163.com</div>
+          </div>
+        </div>
+        <div class="sticker-card-pop p-5 flex items-center gap-3">
+          <div style="width:44px;height:44px;border-radius:50%;background:var(--accent-lighter);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          </div>
+          <div>
+            <div style="font-size:12px;color:var(--muted);font-weight:500;">到岗状态</div>
+            <div style="font-weight:700;color:var(--fg);">立即到岗 · 5天/周 · 6个月</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== COMPETENCIES ========== -->
+<section id="competency" class="section-padding relative" style="background:var(--bg-white);">
+  <div class="absolute inset-0 grid-pattern opacity-20 hide-mobile"></div>
+  <div class="max-w-6xl mx-auto px-5 relative z-10">
+    <div class="reveal text-center">
+      <div class="section-label" style="margin:0 auto 16px;">核心能力</div>
+      <h2 class="section-title">三维度增长运营力</h2>
+      <p class="section-subtitle mx-auto">从多语言内容到活动落地，从社群维护到数据复盘——每一环都有实战验证。</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 mt-12">
+      <!-- Card 1 -->
+      <div class="reveal reveal-delay-1 sticker-card p-7">
+        <div style="width:56px;height:56px;border-radius:50%;background:var(--primary);border:2px solid var(--fg);display:flex;align-items:center;justify-content:center;box-shadow:3px 3px 0 0 var(--fg);margin-bottom:18px;">
+          <svg width="26" height="26" viewbox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        </div>
+        <h3 class="font-heading font-bold text-xl mb-3" style="color:var(--fg);">多语言增长力</h3>
+        <ul class="space-y-2 text-sm" style="color:var(--muted);">
+          <li class="flex items-start gap-2"><span style="color:var(--primary);font-weight:700;">·</span> 德语PGG专四 / PGH专八</li>
+          <li class="flex items-start gap-2"><span style="color:var(--primary);font-weight:700;">·</span> 英语CET-6（500+）</li>
+          <li class="flex items-start gap-2"><span style="color:var(--primary);font-weight:700;">·</span> 德中双语内容翻译与编辑</li>
+          <li class="flex items-start gap-2"><span style="color:var(--primary);font-weight:700;">·</span> 跨文化传播与媒体监测</li>
+        </ul>
+      </div>
+      <!-- Card 2 -->
+      <div class="reveal reveal-delay-2 sticker-card p-7">
+        <div style="width:56px;height:56px;border-radius:50%;background:var(--primary-light);border:2px solid var(--fg);display:flex;align-items:center;justify-content:center;box-shadow:3px 3px 0 0 var(--fg);margin-bottom:18px;">
+          <svg width="26" height="26" viewbox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+        </div>
+        <h3 class="font-heading font-bold text-xl mb-3" style="color:var(--fg);">增长运营实战</h3>
+        <ul class="space-y-2 text-sm" style="color:var(--muted);">
+          <li class="flex items-start gap-2"><span style="color:var(--primary);font-weight:700;">·</span> 连续3个月全平台内容运营</li>
+          <li class="flex items-start gap-2"><span style="color:var(--primary);font-weight:700;">·</span> 累计跟进产出24+篇内容</li>
+          <li class="flex items-start gap-2"><span style="color:var(--primary);font-weight:700;">·</span> 500人官方粉丝群维护</li>
+          <li class="flex items-start gap-2"><span style="color:var(--primary);font-weight:700;">·</span> KAWO+Excel数据追踪复盘</li>
+        </ul>
+      </div>
+      <!-- Card 3 -->
+      <div class="reveal reveal-delay-3 sticker-card p-7">
+        <div style="width:56px;height:56px;border-radius:50%;background:var(--accent);border:2px solid var(--fg);display:flex;align-items:center;justify-content:center;box-shadow:3px 3px 0 0 var(--fg);margin-bottom:18px;">
+          <svg width="26" height="26" viewbox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </div>
+        <h3 class="font-heading font-bold text-xl mb-3" style="color:var(--fg);">活动执行落地</h3>
+        <ul class="space-y-2 text-sm" style="color:var(--muted);">
+          <li class="flex items-start gap-2"><span style="color:var(--primary);font-weight:700;">·</span> 参与执行3场媒体发布会</li>
+          <li class="flex items-start gap-2"><span style="color:var(--primary);font-weight:700;">·</span> 覆盖90+媒体代表与KOL</li>
+          <li class="flex items-start gap-2"><span style="color:var(--primary);font-weight:700;">·</span> 前期筹备→现场执行→后期复盘</li>
+          <li class="flex items-start gap-2"><span style="color:var(--primary);font-weight:700;">·</span> 突发情况快速响应</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Metrics -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
+      <div class="reveal metric-card">
+        <div class="metric-num">24+</div>
+        <div class="metric-label">跟进产出内容</div>
+      </div>
+      <div class="reveal reveal-delay-1 metric-card">
+        <div class="metric-num">3</div>
+        <div class="metric-label">线下活动执行</div>
+      </div>
+      <div class="reveal reveal-delay-2 metric-card">
+        <div class="metric-num">90+</div>
+        <div class="metric-label">媒体/KOL覆盖</div>
+      </div>
+      <div class="reveal reveal-delay-3 metric-card">
+        <div class="metric-num">500</div>
+        <div class="metric-label">粉丝社群维护</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PROJECTS ========== -->
+<section id="projects" class="section-padding relative">
+  <div class="geo-circle hide-mobile" style="width:300px;height:300px;background:var(--accent-lighter);top:5%;right:-100px;opacity:0.4;border-radius:50%;"></div>
+
+  <div class="max-w-6xl mx-auto px-5 relative z-10">
+    <div class="reveal">
+      <div class="section-label">项目实战</div>
+      <h2 class="section-title">三段实战，三个增长故事</h2>
+    </div>
+
+    <!-- Project 1 -->
+    <div class="mt-12 reveal">
+      <div class="project-card p-7 md:p-9">
+        <div class="card-badge">01</div>
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-5">
+          <div>
+            <h3 class="font-heading font-bold text-2xl mb-2" style="color:var(--fg);">多平台内容运营与数据复盘</h3>
+            <p class="text-sm" style="color:var(--muted);">德国国家旅游局北京办事处 · 2025.11 - 2026.01</p>
+          </div>
+          <div class="flex flex-wrap gap-2 flex-shrink-0">
+            <span class="tag">内容运营</span>
+            <span class="tag">数据追踪</span>
+            <span class="tag">KAWO</span>
+          </div>
+        </div>
+
+        <p class="text-base leading-relaxed mb-6" style="color:var(--fg);">
+          负责微信、小红书等平台发布内容的品牌调性审核与发布节奏把控，连续3个月独立执行全平台内容发布，累计跟进产出24+篇；使用KAWO社媒管理工具及Excel追踪多维度运营数据，定期输出结案报告，支撑团队内容策略调整。
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-4 mb-6">
+          <div class="img-frame">
+            <img src="public/images/work-02.webp" alt="媒体中心新闻发布列表" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="img-frame">
+              <img src="public/images/work-03.webp" alt="媒体中心移动端" style="width:100%;height:100%;object-fit:cover;display:block;min-height:104px;">
+            </div>
+            <div class="img-frame">
+              <img src="public/images/work-04.webp" alt="微信推文" style="width:100%;height:100%;object-fit:cover;display:block;min-height:104px;">
+            </div>
+            <div class="img-frame col-span-2" style="background:var(--accent-lighter);padding:14px 16px;">
+              <div style="font-size:13px;font-weight:700;color:var(--primary-dark);margin-bottom:6px;">代表作</div>
+              <div style="font-size:12px;color:var(--muted);line-height:1.5;">《德国最美老城系列，藏在时光缝隙里的秘境》微信公众号发布</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--accent-lighter);border:2px solid var(--border);border-radius:var(--radius-md);padding:18px;">
+          <div class="flex items-center gap-2 mb-3">
+            <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            <span style="font-weight:700;color:var(--primary-dark);font-size:15px;">内容数据亮点</span>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div class="metric-card" style="padding:14px 10px;box-shadow:3px 3px 0 0 var(--accent);">
+              <div class="metric-num" style="font-size:28px;">336</div>
+              <div class="metric-label">点赞</div>
+            </div>
+            <div class="metric-card" style="padding:14px 10px;box-shadow:3px 3px 0 0 var(--accent);">
+              <div class="metric-num" style="font-size:28px;">681</div>
+              <div class="metric-label">转发</div>
+            </div>
+            <div class="metric-card" style="padding:14px 10px;box-shadow:3px 3px 0 0 var(--accent);">
+              <div class="metric-num" style="font-size:28px;">140</div>
+              <div class="metric-label">收藏</div>
+            </div>
+            <div class="metric-card" style="padding:14px 10px;box-shadow:3px 3px 0 0 var(--accent);">
+              <div class="metric-num" style="font-size:28px;">36</div>
+              <div class="metric-label">评论</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="mt-8 reveal">
+      <div class="project-card p-7 md:p-9">
+        <div class="card-badge" style="background:var(--primary-light);">02</div>
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-5">
+          <div>
+            <h3 class="font-heading font-bold text-2xl mb-2" style="color:var(--fg);">PR活动执行与现场运营</h3>
+            <p class="text-sm" style="color:var(--muted);">北京2场 · 广州1场 · 累计覆盖90+媒体/KOL</p>
+          </div>
+          <div class="flex flex-wrap gap-2 flex-shrink-0">
+            <span class="tag">活动执行</span>
+            <span class="tag">现场统筹</span>
+            <span class="tag">物料管理</span>
+          </div>
+        </div>
+
+        <p class="text-base leading-relaxed mb-6" style="color:var(--fg);">
+          参与执行3场媒体分享会及旅游推介活动，负责活动现场统筹执行、物料管控、后台PPT及大屏互动操作，以及活动现场社媒同步发布。活动全链路覆盖前期筹备、现场执行到后期复盘，具备快速应对突发情况的能力。
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Timeline -->
+          <div>
+            <div class="timeline-item">
+              <div class="font-heading font-bold text-base mb-1" style="color:var(--fg);">前期筹备</div>
+              <p class="text-sm leading-relaxed" style="color:var(--muted);">完善汇报PPT，补充实时数据，优化设计审美；采购与收发物料，设计KT板、宣传云图；发送电子邀请函并统计导出最终到场名单。</p>
+            </div>
+            <div class="timeline-item">
+              <div class="font-heading font-bold text-base mb-1" style="color:var(--fg);">现场执行</div>
+              <p class="text-sm leading-relaxed" style="color:var(--muted);">负责签到台、物料分发、嘉宾引导，操作后台PPT及大屏互动，协调现场突发问题，确保各环节顺利推进。</p>
+            </div>
+            <div class="timeline-item">
+              <div class="font-heading font-bold text-base mb-1" style="color:var(--fg);">后期复盘</div>
+              <p class="text-sm leading-relaxed" style="color:var(--muted);">对比到场与报名名单，发布活动新闻稿及后续邮件，沉淀执行SOP，提升后续活动效率。</p>
+            </div>
+          </div>
+
+          <!-- Images -->
+          <div class="grid grid-cols-2 gap-3">
+            <div class="img-frame col-span-2">
+              <img src="public/images/work-05.webp" alt="活动现场展位" style="width:100%;height:160px;object-fit:cover;display:block;">
+            </div>
+            <div class="img-frame">
+              <img src="public/images/work-06.webp" alt="签到台" style="width:100%;height:110px;object-fit:cover;display:block;">
+            </div>
+            <div class="img-frame">
+              <img src="public/images/work-07.webp" alt="抽奖环节" style="width:100%;height:110px;object-fit:cover;display:block;">
+            </div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4 mt-6">
+          <div style="background:var(--accent-lighter);border:2px solid var(--border);border-radius:var(--radius-md);padding:16px;">
+            <div style="font-weight:700;color:var(--primary-dark);font-size:14px;margin-bottom:8px;">核心成果</div>
+            <ul class="space-y-1.5 text-sm" style="color:var(--fg);">
+              <li class="flex items-start gap-2"><span style="color:var(--primary);">✓</span> 3场媒体分享会/推介会均顺利执行</li>
+              <li class="flex items-start gap-2"><span style="color:var(--primary);">✓</span> 现场突发情况快速响应与协调</li>
+              <li class="flex items-start gap-2"><span style="color:var(--primary);">✓</span> 活动后名单对比与新闻稿发布闭环</li>
+            </ul>
+          </div>
+          <div style="background:var(--bg-white);border:2px solid var(--border);border-radius:var(--radius-md);padding:16px;">
+            <div style="font-weight:700;color:var(--primary-dark);font-size:14px;margin-bottom:8px;">能力沉淀</div>
+            <ul class="space-y-1.5 text-sm" style="color:var(--fg);">
+              <li class="flex items-start gap-2"><span style="color:var(--primary);">✓</span> 跨部门协作与资源整合能力</li>
+              <li class="flex items-start gap-2"><span style="color:var(--primary);">✓</span> 细节把控与流程节点管理意识</li>
+              <li class="flex items-start gap-2"><span style="color:var(--primary);">✓</span> 从批评中迭代，工作更细心主动</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="mt-8 reveal">
+      <div class="project-card p-7 md:p-9">
+        <div class="card-badge" style="background:var(--accent);">03</div>
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-5">
+          <div>
+            <h3 class="font-heading font-bold text-2xl mb-2" style="color:var(--fg);">社群运营与跨文化传播</h3>
+            <p class="text-sm" style="color:var(--muted);">德国国家旅游局北京办事处</p>
+          </div>
+          <div class="flex flex-wrap gap-2 flex-shrink-0">
+            <span class="tag">社群运营</span>
+            <span class="tag">双语翻译</span>
+            <span class="tag">媒体监测</span>
+          </div>
+        </div>
+
+        <p class="text-base leading-relaxed mb-6" style="color:var(--fg);">
+          日常维护500人官方账号粉丝群，负责活动信息触达与用户互动；独立完成活动新闻稿及日常内容的德中双语翻译与编辑，通过官方小程序、官网及媒体联系人库（近500名）三个渠道同步发布，支撑跨文化传播落地；同时负责每日德文媒体监测（Presseschau），持续追踪德语区旅游行业动态。
+        </p>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+          <div class="metric-card">
+            <div class="metric-num">500</div>
+            <div class="metric-label">官方粉丝群成员</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-num">500</div>
+            <div class="metric-label">媒体联系人库</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-num">3</div>
+            <div class="metric-label">内容分发渠道</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-num" style="font-size:28px;">每日</div>
+            <div class="metric-label">德文媒体监测</div>
+          </div>
+        </div>
+
+        <div style="background:var(--accent-lighter);border:2px solid var(--border);border-radius:var(--radius-md);padding:18px;">
+          <div class="flex items-center gap-2 mb-3">
+            <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <span style="font-weight:700;color:var(--primary-dark);font-size:15px;">工作方法论</span>
+          </div>
+          <div class="grid md:grid-cols-3 gap-4 text-sm" style="color:var(--fg);">
+            <div><span style="font-weight:700;color:var(--primary);">用户视角：</span>从粉丝群互动中捕捉用户兴趣点，反向优化内容选题与活动邀约策略。</div>
+            <div><span style="font-weight:700;color:var(--primary);">数据验证：</span>用KAWO与Excel追踪内容表现，用结案报告沉淀可复用的增长假设。</div>
+            <div><span style="font-weight:700;color:var(--primary);">细节闭环：</span>从邀请函发送到名单核对，从现场引导到后期新闻稿，确保每个节点可追踪。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SELF-MEDIA ========== -->
+<section id="self-media" class="section-padding relative" style="background:var(--bg-white);">
+  <div class="absolute inset-0 dot-pattern opacity-15 hide-mobile"></div>
+  <div class="max-w-6xl mx-auto px-5 relative z-10">
+    <div class="reveal">
+      <div class="section-label">自媒体实践</div>
+      <h2 class="section-title">从0到1的增长体感</h2>
+      <p class="section-subtitle">在抖音和小红书上亲手跑通"发布—看数据—迭代"的闭环。</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-10">
+      <!-- 小红书 -->
+      <div class="reveal reveal-delay-1 sticker-card p-7">
+        <div class="flex items-center gap-3 mb-4">
+          <div style="width:48px;height:48px;border-radius:50%;background:#FF2442;border:2px solid var(--fg);display:flex;align-items:center;justify-content:center;box-shadow:3px 3px 0 0 var(--fg);">
+            <span style="color:#fff;font-weight:800;font-size:14px;font-family:'Outfit',sans-serif;">RED</span>
+          </div>
+          <div>
+            <h3 class="font-heading font-bold text-lg" style="color:var(--fg);">小红书 · 城市探索笔记</h3>
+            <p class="text-xs" style="color:var(--muted);">选题策划 · 图文排版 · 平台运营</p>
+          </div>
+        </div>
+        <div style="background:var(--accent-lighter);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:14px;margin-bottom:14px;">
+          <div style="font-size:12px;color:var(--muted);margin-bottom:4px;">代表作</div>
+          <div style="font-size:14px;font-weight:600;color:var(--fg);line-height:1.5;">《研1已测｜北京人少好逛｜阜成门站-北海公园 北京反向Citywalk》</div>
+        </div>
+        <div style="font-size:12px;color:var(--muted);text-align:center;padding:8px 0;">选题策划 · 图文排版 · 平台推荐机制研究</div>
+      </div>
+
+      <!-- 抖音 -->
+      <div class="reveal reveal-delay-2 sticker-card p-7">
+        <div class="flex items-center gap-3 mb-4">
+          <div style="width:48px;height:48px;border-radius:50%;background:#000000;border:2px solid var(--fg);display:flex;align-items:center;justify-content:center;box-shadow:3px 3px 0 0 var(--fg);">
+            <svg width="22" height="22" viewbox="0 0 24 24" fill="#fff"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.55a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.38z"></path></svg>
+          </div>
+          <div>
+            <h3 class="font-heading font-bold text-lg" style="color:var(--fg);">抖音 · 口播自媒体</h3>
+            <p class="text-xs" style="color:var(--muted);">口播表达 · 数据复盘 · 内容迭代</p>
+          </div>
+        </div>
+        <div style="background:var(--accent-lighter);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:14px;margin-bottom:14px;">
+          <div style="font-size:12px;color:var(--muted);margin-bottom:4px;">实践内容</div>
+          <div style="font-size:14px;font-weight:600;color:var(--fg);line-height:1.5;">独立完成口播脚本撰写、拍摄与剪辑，通过"发布—看数据—迭代"闭环持续优化内容策略与镜头表达。</div>
+        </div>
+        <div style="font-size:12px;color:var(--muted);text-align:center;padding:8px 0;">口播表达 · 脚本策划 · 数据复盘</div>
+      </div>
+    </div>
+
+    <!-- Certificates -->
+    <div class="reveal mt-12">
+      <div class="flex items-center gap-3 mb-5">
+        <div style="width:40px;height:40px;border-radius:50%;background:var(--accent-lighter);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;">
+          <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        </div>
+        <h3 class="font-heading font-bold text-xl" style="color:var(--fg);">语言与技能证书</h3>
+      </div>
+      <p class="text-xs mt-3" style="color:var(--muted);">包含：德语专业四级/八级、英语CET-4/6、计算机二级、普通话二甲、教师资格证等</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== EDUCATION ========== -->
+<section id="education" class="section-padding relative">
+  <div class="geo-circle hide-mobile" style="width:250px;height:250px;background:var(--accent-lighter);bottom:10%;left:-80px;opacity:0.4;border-radius:50%;"></div>
+
+  <div class="max-w-6xl mx-auto px-5 relative z-10">
+    <div class="reveal">
+      <div class="section-label">教育背景</div>
+      <h2 class="section-title">扎实的语言功底 + AI跨界视野</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-10">
+      <!-- Education -->
+      <div class="reveal reveal-delay-1">
+        <div class="space-y-0">
+          <div class="timeline-item">
+            <div class="sticker-card-pop p-5" style="margin-left:-28px;padding-left:28px;">
+              <h3 class="font-heading font-bold text-lg" style="color:var(--fg);">北京科技大学 · 翻译（德语方向）硕士</h3>
+              <p class="text-xs mb-2" style="color:var(--muted);">2025.09 - 2027.06 · 研二在读</p>
+              <p class="text-sm leading-relaxed" style="color:var(--muted);">主修：科技笔译、交替传译、非文学翻译、计算机辅助翻译；微专业辅修AI+德语的多场景应用与国际职场力提升。</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="sticker-card-pop p-5" style="margin-left:-28px;padding-left:28px;">
+              <h3 class="font-heading font-bold text-lg" style="color:var(--fg);">青岛科技大学 · 德语 本科</h3>
+              <p class="text-xs mb-2" style="color:var(--muted);">2021.09 - 2025.06 · 综测排名 3/23</p>
+              <p class="text-sm leading-relaxed" style="color:var(--muted);">主修：德语笔译、口译、科技德语、经贸德语、高级德语、跨文化交际；获校级一等奖学金、优秀毕业生。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Awards -->
+      <div class="reveal reveal-delay-2">
+        <h3 class="font-heading font-bold text-lg mb-4" style="color:var(--fg);">荣誉与奖项</h3>
+        <div class="grid grid-cols-1 gap-3">
+          <div class="sticker-card-pop p-4 flex items-start gap-3">
+            <div style="width:36px;height:36px;border-radius:50%;background:var(--accent-lighter);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+            </div>
+            <div>
+              <div style="font-weight:700;font-size:14px;color:var(--fg);">全国大学生英语竞赛C类 全国一等奖</div>
+              <div style="font-size:12px;color:var(--muted);margin-top:2px;">全校共12人晋级决赛</div>
+            </div>
+          </div>
+          <div class="sticker-card-pop p-4 flex items-start gap-3">
+            <div style="width:36px;height:36px;border-radius:50%;background:var(--accent-lighter);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+            </div>
+            <div>
+              <div style="font-weight:700;font-size:14px;color:var(--fg);">外研社·国才杯英语演讲比赛 校级三等奖</div>
+              <div style="font-size:12px;color:var(--muted);margin-top:2px;">语言表达与舞台展示</div>
+            </div>
+          </div>
+          <div class="sticker-card-pop p-4 flex items-start gap-3">
+            <div style="width:36px;height:36px;border-radius:50%;background:var(--accent-lighter);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            <div>
+              <div style="font-weight:700;font-size:14px;color:var(--fg);">校级一等奖学金 &amp; 优秀学生干部</div>
+              <div style="font-size:12px;color:var(--muted);margin-top:2px;">综合排名前段</div>
+            </div>
+          </div>
+          <div class="sticker-card-pop p-4 flex items-start gap-3">
+            <div style="width:36px;height:36px;border-radius:50%;background:var(--accent-lighter);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round"><path d="M9 11H5a2 2 0 0 0-2 2v7h18v-7a2 2 0 0 0-2-2h-4"></path><path d="M15 11V5a3 3 0 0 0-6 0v6"></path></svg>
+            </div>
+            <div>
+              <div style="font-weight:700;font-size:14px;color:var(--fg);">院优秀心理委员 &amp; 优秀毕业生</div>
+              <div style="font-size:12px;color:var(--muted);margin-top:2px;">综合素质认可</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="reveal mt-12">
+      <h3 class="font-heading font-bold text-lg mb-4" style="color:var(--fg);">工具与技能</h3>
+      <div class="flex flex-wrap gap-2">
+        <span class="tag">KAWO社媒管理</span>
+        <span class="tag">Excel数据分析</span>
+        <span class="tag">PowerBI可视化</span>
+        <span class="tag">ChatGPT / Gemini</span>
+        <span class="tag">Workbuddy</span>
+        <span class="tag">Codex</span><span class="tag">PR视频剪辑</span>
+        <span class="tag">Lr图片处理</span>
+        <span class="tag">PPT制作</span>
+        <span class="tag">Office办公</span>
+        <span class="tag tag-solid">德语专八</span>
+        <span class="tag tag-solid">英语CET-6</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CONTACT ========== -->
+<section id="contact" class="section-padding relative" style="background:var(--primary-dark);">
+  <div class="geo-circle" style="width:300px;height:300px;background:rgba(255,255,255,0.05);top:-60px;right:-60px;border-radius:50%;"></div>
+  <div class="geo-circle float-anim" style="width:60px;height:60px;background:rgba(96,165,250,0.2);bottom:20%;left:10%;border-radius:50%;"></div>
+  <div class="geo-circle hide-mobile" style="width:20px;height:20px;background:var(--accent);top:30%;left:15%;border-radius:50%;"></div>
+
+  <div class="max-w-4xl mx-auto px-5 relative z-10 text-center">
+    <div class="reveal">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6" style="background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.2);">
+        <span style="width:8px;height:8px;border-radius:50%;background:#34D399;display:inline-block;"></span>
+        <span style="color:#fff;font-size:13px;font-weight:600;">立即到岗 · 5天/周 · 6个月</span>
+      </div>
+      <h2 class="font-heading font-extrabold mb-4" style="font-size:clamp(28px, 5vw, 42px);color:#fff;line-height:1.2;">
+        期待加入您的团队<br>一起创造更多可能
+      </h2>
+      <p class="mb-8" style="color:rgba(255,255,255,0.7);font-size:16px;">
+        多语言 · 数据驱动 · 执行力 · 增长体感
+      </p>
+    </div>
+
+    <div class="reveal reveal-delay-1 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+      <a href="#projects" class="sticker-card p-5 flex items-center gap-4" style="background:#fff;text-decoration:none;">
+        <div style="width:48px;height:48px;border-radius:50%;background:var(--accent-lighter);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="22" height="22" viewbox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        </div>
+        <div style="text-align:left;">
+          <div style="font-size:12px;color:var(--muted);font-weight:500;">求职方向</div>
+          <div style="font-weight:700;color:var(--fg);font-size:16px;">运营 / 海外业务</div>
+        </div>
+      </a>
+      <a href="mailto:13153132292@163.com" class="sticker-card p-5 flex items-center gap-4" style="background:#fff;text-decoration:none;">
+        <div style="width:48px;height:48px;border-radius:50%;background:var(--accent-lighter);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="22" height="22" viewbox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </div>
+        <div style="text-align:left;">
+          <div style="font-size:12px;color:var(--muted);font-weight:500;">邮箱</div>
+          <div style="font-weight:700;color:var(--fg);font-size:14px;">13153132292@163.com</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="reveal reveal-delay-2 mt-8 pt-8" style="border-top:1px solid rgba(255,255,255,0.15);">
+      <p style="color:rgba(255,255,255,0.5);font-size:13px;">
+        周畅 · 北京科技大学 · 翻译（德语方向）研二 · 2026 Portfolio
+      </p>
+    </div>
+  </div>
+</section>
+
+<script></script></body></html>
